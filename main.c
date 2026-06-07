@@ -27,8 +27,7 @@
     printf("   4. Listar Universo         11. Histórico \n");
     printf("   5. Listar Mundo            12. Aplicar Doença\n");
     printf("   6. Destruir Civilização    13. Disparar Evento\n");
-    printf("   7. Destruir Mundo          14. Registrar Evento manual\n");
-    printf("   0. Sair\n");
+    printf("   7. Destruir Mundo           0. Sair   \n");
     printf("  ============================================================\n");
     printf("   Opção: ");
 }
@@ -238,11 +237,6 @@ int main(void) {
             /* 13 — Disparar Evento */
             case 13:
                 menu_evento(&u);
-                break;
-
-            /* 14 — Registrar Evento Manual */
-            case 14:
-                menu_registrar_evento(&u);
                 break;
 
             /* 0 — Sair */
