@@ -3,7 +3,9 @@
 /* =======================================================
    Tabelas de strings (definidas aqui, declaradas extern no .h)
    ======================================================= */
-const char *NOME_ERA[TOTAL_ERAS] = {  
+
+const char *NOME_ERA[TOTAL_ERAS] = {
+
     "Era Primitiva", "Era Medieval", "Era Industrial",
     "Era Futurista",  "Era Espacial",  "Era Cosmica"
 };
@@ -349,6 +351,7 @@ int civ_criar(Universo *u, int mundoId) {
         nova->populacao = m->limitePopulacional;
     if (nova->populacao < 1) nova->populacao = 1;
 
+
    do {
         nova->nivelTec = io_ler_int("  Nível tecnológico (0-100): ");
 
@@ -357,6 +360,12 @@ int civ_criar(Universo *u, int mundoId) {
 
     } while (nova->nivelTec < 0 || nova->nivelTec > 100);
    
+
+    nova->nivelTec = io_ler_int("  Nível tecnologico (0-100): ");
+    if (nova->nivelTec < 0)   nova->nivelTec = 0;
+    if (nova->nivelTec > 100) nova->nivelTec = 100;
+
+
     nova->id             = u->proxIdCiv++;
     nova->nivelEvolutivo = civ_nivel_evolutivo(nova->nivelTec);
     nova->mundoOrigem    = mundoId;
@@ -426,6 +435,25 @@ Civilizacao *civ_buscar_nome(const Universo *u, const char *nome) {
     printf("  Nenhuma civilização com o nome \"%s\" foi encontrada.\n", nome);
     return NULL;
 }
+Civilizacao *civ_buscar_id(const Universo *u, int id) {
+    for (int i = 0; i < MAX_MUNDOS; i++) {
+        if (!u->mundos[i].ativo) continue;
+        for (Civilizacao *c = u->mundos[i].civs; c; c = c->prox)
+            if (c->id == id) return c;
+    }
+    return NULL;
+}
+
+Civilizacao *civ_buscar_nome(const Universo *u, const char *nome) {
+    for (int i = 0; i < MAX_MUNDOS; i++) {
+        if (!u->mundos[i].ativo) continue;
+        for (Civilizacao *c = u->mundos[i].civs; c; c = c->prox)
+            if (strstr(c->nome, nome)) return c;
+    }
+    return NULL;
+}
+
+
 Civilizacao *civ_buscar_especie(const Universo *u, const char *esp) {
     for (int i = 0; i < MAX_MUNDOS; i++) {
         if (!u->mundos[i].ativo) continue;
