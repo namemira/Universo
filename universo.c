@@ -421,28 +421,6 @@ int civ_destruir(Universo *u, int id) {
     return 0;
 }
 
-Civilizacao *civ_buscar_nome(const Universo *u, const char *nome) {
-    for (int i = 0; i < MAX_MUNDOS; i++) {
-        if (!u->mundos[i].ativo)
-            continue;
-
-        for (Civilizacao *c = u->mundos[i].civs; c; c = c->prox) {
-            if (strstr(c->nome, nome))
-                return c;
-        }
-    }
-
-    printf("  Nenhuma civilização com o nome \"%s\" foi encontrada.\n", nome);
-    return NULL;
-}
-Civilizacao *civ_buscar_id(const Universo *u, int id) {
-    for (int i = 0; i < MAX_MUNDOS; i++) {
-        if (!u->mundos[i].ativo) continue;
-        for (Civilizacao *c = u->mundos[i].civs; c; c = c->prox)
-            if (c->id == id) return c;
-    }
-    return NULL;
-}
 
 Civilizacao *civ_buscar_nome(const Universo *u, const char *nome) {
     for (int i = 0; i < MAX_MUNDOS; i++) {
@@ -459,6 +437,18 @@ Civilizacao *civ_buscar_especie(const Universo *u, const char *esp) {
         if (!u->mundos[i].ativo) continue;
         for (Civilizacao *c = u->mundos[i].civs; c; c = c->prox)
             if (strstr(c->especie, esp)) return c;
+    }
+    return NULL;
+}
+Civilizacao *civ_buscar_id(const Universo *u, int id) {
+    for (int i = 0; i < MAX_MUNDOS; i++) {
+        if (!u->mundos[i].ativo)
+            continue;
+
+        for (Civilizacao *c = u->mundos[i].civs; c; c = c->prox) {
+            if (c->id == id)
+                return c;
+        }
     }
     return NULL;
 }
