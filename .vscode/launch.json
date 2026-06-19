@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/samir/OneDrive/Documentos/GitHub/Tupã",
-      "program": "c:/Users/samir/OneDrive/Documentos/GitHub/Tupã/build/Debug/outDebug",
+      "cwd": "c:/Users/samir/OneDrive/Documentos/Estruturas/aula/Projeto/simulador_universo (2)/universo",
+      "program": "c:/Users/samir/OneDrive/Documentos/Estruturas/aula/Projeto/simulador_universo (2)/universo/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -3,9 +3,7 @@
 /* =======================================================
    Tabelas de strings (definidas aqui, declaradas extern no .h)
    ======================================================= */
-
 const char *NOME_ERA[TOTAL_ERAS] = {
-
     "Era Primitiva", "Era Medieval", "Era Industrial",
     "Era Futurista",  "Era Espacial",  "Era Cosmica"
 };
@@ -346,25 +344,13 @@ int civ_criar(Universo *u, int mundoId) {
     io_ler_string("  Nome da civilização: ", nova->nome, MAX_NOME);
     io_ler_string("  Espécie: ", nova->especie, MAX_ESPECIE);
     nova->populacao = io_ler_ll("  População inicial: ");
-
     if (nova->populacao > m->limitePopulacional)
         nova->populacao = m->limitePopulacional;
     if (nova->populacao < 1) nova->populacao = 1;
 
-
-   do {
-        nova->nivelTec = io_ler_int("  Nível tecnológico (0-100): ");
-
-        if (nova->nivelTec < 0 || nova->nivelTec > 100)
-        printf("  Valor inválido! Digite um número entre 0 e 100.\n");
-
-    } while (nova->nivelTec < 0 || nova->nivelTec > 100);
-   
-
     nova->nivelTec = io_ler_int("  Nível tecnologico (0-100): ");
     if (nova->nivelTec < 0)   nova->nivelTec = 0;
     if (nova->nivelTec > 100) nova->nivelTec = 100;
-
 
     nova->id             = u->proxIdCiv++;
     nova->nivelEvolutivo = civ_nivel_evolutivo(nova->nivelTec);
@@ -421,6 +407,14 @@ int civ_destruir(Universo *u, int id) {
     return 0;
 }
 
+Civilizacao *civ_buscar_id(const Universo *u, int id) {
+    for (int i = 0; i < MAX_MUNDOS; i++) {
+        if (!u->mundos[i].ativo) continue;
+        for (Civilizacao *c = u->mundos[i].civs; c; c = c->prox)
+            if (c->id == id) return c;
+    }
+    return NULL;
+}
 
 Civilizacao *civ_buscar_nome(const Universo *u, const char *nome) {
     for (int i = 0; i < MAX_MUNDOS; i++) {
@@ -431,24 +425,11 @@ Civilizacao *civ_buscar_nome(const Universo *u, const char *nome) {
     return NULL;
 }
 
-
 Civilizacao *civ_buscar_especie(const Universo *u, const char *esp) {
     for (int i = 0; i < MAX_MUNDOS; i++) {
         if (!u->mundos[i].ativo) continue;
         for (Civilizacao *c = u->mundos[i].civs; c; c = c->prox)
             if (strstr(c->especie, esp)) return c;
-    }
-    return NULL;
-}
-Civilizacao *civ_buscar_id(const Universo *u, int id) {
-    for (int i = 0; i < MAX_MUNDOS; i++) {
-        if (!u->mundos[i].ativo)
-            continue;
-
-        for (Civilizacao *c = u->mundos[i].civs; c; c = c->prox) {
-            if (c->id == id)
-                return c;
-        }
     }
     return NULL;
 }
