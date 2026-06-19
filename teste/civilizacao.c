@@ -29,7 +29,7 @@ int io_ler_int(const char *prompt) {
 long long io_ler_ll(const char *prompt) {
     long long v;
     printf("%s", prompt);
-    while (scanf("%lld", &v) != 1) {
+    while (scanf("%I64d", &v) != 1) {
         io_limpar_buffer();
         printf("  Valor invalido. Tente novamente: ");
     }

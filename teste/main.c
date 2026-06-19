@@ -15,7 +15,7 @@ static void cabecalho(const Universo *u) {
            u->anoAtual, NOME_ERA[u->era], u->numMundos);
     if (u->era < ERA_COSMICA) {
         long long faltam = DURACAO_ERA[u->era] - u->anosNaEra;
-        printf("  Proxima era em: %lld anos\n", faltam > 0 ? faltam : 0);
+        printf("  Proxima era em: %I64d anos\n", faltam > 0 ? faltam : 0);
     } else {
         printf("  Era maxima: Era Cosmica atingida!\n");
     }
@@ -74,7 +74,7 @@ static void menu_buscar(Universo *u) {
     printf("  ID          : %d\n",   c->id);
     printf("  Nome        : %s\n",   c->nome);
     printf("  Especie     : %s\n",   c->especie);
-    printf("  Populacao   : %lld\n", c->populacao);
+    printf("  Populacao   : %I64d\n", c->populacao);
     printf("  Tec         : %d\n",   c->nivelTec);
     printf("  Nivel Evol. : %s\n",   civ_nome_nivel(c->nivelEvolutivo));
     printf("  Mundo       : %s\n",   m ? m->nome : "?");

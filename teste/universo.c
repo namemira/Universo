@@ -40,7 +40,7 @@ void universo_listar(const Universo *u) {
     printf("  ============================================================\n");
     printf("                    ESTADO DO UNIVERSO                        \n");
     printf("  ============================================================\n");
-    printf("  Ano: %lld | Era: %s | Mundos ativos: %d\n",
+    printf("  Ano: %I64d | Era: %s | Mundos ativos: %d\n",
            u->anoAtual, NOME_ERA[u->era], u->numMundos);
     printf("  ------------------------------------------------------------\n");
 

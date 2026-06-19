@@ -26,13 +26,13 @@ void doenca_aplicar(Universo *u, TipoDoenca tipo) {
                 case DOENCA_VIRUS_VERMELHO:
                     c->populacao = (long long)(c->populacao * 0.7);
                     snprintf(msg, MAX_DESC,
-                             "DOENCA [Virus Vermelho]: \"%s\" -30%% pop. => %lld",
+                             "DOENCA [Virus Vermelho]: \"%s\" -30%% pop. => %I64d",
                              c->nome, c->populacao);
                     break;
                 case DOENCA_PESTE_COSMICA:
                     c->populacao = (long long)(c->populacao * 0.5);
                     snprintf(msg, MAX_DESC,
-                             "DOENCA [Peste Cosmica]: \"%s\" -50%% pop. => %lld",
+                             "DOENCA [Peste Cosmica]: \"%s\" -50%% pop. => %I64d",
                              c->nome, c->populacao);
                     break;
                 case DOENCA_COLAPSO_NEURAL:

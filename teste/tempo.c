@@ -27,7 +27,7 @@ void tempo_avancar(Universo *u, long long anos) {
     u->anoAtual  += anos;
     u->anosNaEra += anos;
 
-    printf("  Se passaram %lld anos. (Ano atual: %lld)\n", anos, u->anoAtual);
+    printf("  Se passaram %I64d anos. (Ano atual: %I64d)\n", anos, u->anoAtual);
 
     era_verificar(u);
 
@@ -44,11 +44,11 @@ void era_exibir_nivel(const Universo *u) {
     printf("  Nivel (Era): %s\n", NOME_ERA[u->era]);
     printf("  Descricao  : %s\n", DESC_ERA[u->era]);
     printf("  Acoes perm.: %s\n", ACOES_ERA[u->era]);
-    printf("  Ano atual  : %lld\n", u->anoAtual);
-    printf("  Anos na era: %lld", u->anosNaEra);
+    printf("  Ano atual  : %I64d\n", u->anoAtual);
+    printf("  Anos na era: %I64d", u->anosNaEra);
     if (u->era < ERA_COSMICA) {
         long long faltam = DURACAO_ERA[u->era] - u->anosNaEra;
-        printf(" / %lld  (faltam %lld para proxima era)\n",
+        printf(" / %I64d  (faltam %I64d para proxima era)\n",
                DURACAO_ERA[u->era], faltam > 0 ? faltam : 0);
     } else {
         printf(" (Era maxima atingida)\n");
